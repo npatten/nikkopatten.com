@@ -35,7 +35,8 @@ class ThemeToggle extends HTMLElement {
 }
 customElements.define("theme-toggle", ThemeToggle);
 if (!localStorage.getItem("theme")) {
-    localStorage.setItem("theme", "light");
+    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    localStorage.setItem("theme", preferred);
 }
 document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") ?? "light");
 
