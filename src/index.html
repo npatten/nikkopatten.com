@@ -1,0 +1,57 @@
+<% meta() %>
+
+<%= render("./_partials/header.html", { title, description, url }) %>
+
+    <color-band class="w-full mt-4 mb-6" style="height: 80px;"></color-band>
+
+    <h4 class="mb-6">Musings <a href="/rss.xml" class="text-sm"><svg style="width: 18px; color: var(--link-color);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss-icon lucide-rss"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a></h4>
+    <%
+        const posts = metas("./posts").filter((p) => p.meta.published);
+        posts.sort((a, b) => b.meta.date.localeCompare(a.meta.date));
+
+        const channel = {
+            title: "{ Nikko Patten }",
+            description: "Writing on software, tools, and whatever else is on my mind.",
+            url: "https://nikkopatten.com"
+        }
+        const items = posts.map((p) => {
+            return {
+                title: p.meta.title,
+                description: p.meta.description,
+                pubdate: p.meta.date,
+                url: channel.url + `/posts/${p.directory}`
+            }
+        })
+        rss("./rss.xml", channel, items);
+    %>
+    <div class="post-list flex flex-col gap-4">
+        <% for (const post of posts) { %>
+            <a href="/posts/<%=post.directory%>/" class="flex gap-4 items-center">
+                <div class="flex row gap-4 items-baseline">
+                    <span class="text-sm text-muted italic whitespace-nowrap"><%=post.meta.date%></span>
+                    <span><%=post.meta.title%></span>
+                </div>
+            </a>
+        <% } %>
+    </div>
+
+    <h4 class="mt-8 mb-6">Who I am</h4>
+    <p>
+        Hi, I'm Nikko. I'm a software developer who likes small tools, clear thinking, and quiet systems.
+    </p>
+    <p>
+        <em>TODO: replace this with a short bio that sounds like you. Keep it to two or three paragraphs.</em>
+    </p>
+
+    <h4 class="mt-8 mb-6">Get in touch</h4>
+    <div class="flex flex-col">
+        <div class="flex gap-2 mb-3">
+            <a href="https://github.com/npatten"><i class="icon w-8 h-8" style="color: var(--link-color);"><%=render("./_icons/github-line.svg")%></i></a>
+            <!-- Add more socials here as needed, e.g.: -->
+            <!-- <a href="https://bsky.app/profile/nikkopatten.com"><i class="icon w-8 h-8" style="color: var(--link-color);"><%=render("./_icons/bluesky-line.svg")%></i></a> -->
+            <!-- <a href="https://mastodon.social/@nikkopatten"><i class="icon w-8 h-8" style="color: var(--link-color);"><%=render("./_icons/mastodon-line.svg")%></i></a> -->
+        </div>
+        <a href="mailto:hello@nikkopatten.com">hello@nikkopatten.com</a>
+    </div>
+
+    <%= render("./_partials/footer.html") %>

@@ -1,0 +1,15 @@
+<%= render("./header.html", { title, description: description ?? "", url, image: image ? url + image : null }) %>
+
+<article>
+
+<color-band class="w-full mt-4" style="height: 80px;"></color-band>
+
+<h1 style="margin-top: 0rem;"><%= title %></h1>
+<p class="text-xs italic" style="color: var(--dimmed-text-color);"><%= date %></p>
+
+<% if (typeof image !== 'undefined' && image) { %>
+<figure>
+<img src="<%= image %>" loading="lazy">
+<figcaption><%= typeof caption !== 'undefined' ? caption : '' %></figcaption>
+</figure>
+<% } %>
