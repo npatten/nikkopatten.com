@@ -4,6 +4,8 @@ My personal site and blog. Built with [blargh](https://github.com/badlogic/blarg
 
 The structure is heavily inspired by (and partially derived from) [mariozechner.at](https://github.com/badlogic/mariozechner.at), MIT-licensed. See `LICENSE.blargh-template` for attribution.
 
+Shout out to the amazing work by the folks at [WelchLabs](https://www.welchlabs.com/) for inspiring the main page visual.
+
 ## Prerequisites
 
 - [Node.js 20+](https://nodejs.org)
@@ -60,12 +62,12 @@ Outputs the static site to `./html/`. That folder is the deployable artifact: up
 2. Create `meta.json`:
    ```json
    {
-       "title": "My post title",
-       "date": "YYYY-MM-DD",
-       "description": "One-line SEO / RSS description.",
-       "image": "media/header.png",
-       "caption": "Optional caption for the header image.",
-       "published": true
+     "title": "My post title",
+     "date": "YYYY-MM-DD",
+     "description": "One-line SEO / RSS description.",
+     "image": "media/header.png",
+     "caption": "Optional caption for the header image.",
+     "published": true
    }
    ```
    Omit `image`/`caption` if the post has no header image. Set `published` to `false` to keep a draft out of the index and RSS feed.

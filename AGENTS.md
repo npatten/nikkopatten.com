@@ -1,6 +1,7 @@
 # nikkopatten.com — Agent Guide
 
 A minimalist personal blog and portfolio built with [blargh](https://github.com/badlogic/blargh), a static site generator using EJS-style templating (`<% %>` / `<%= %>`) over Markdown + HTML.
+Credit to Mario Zechner [mariozechner.at](https://github.com/badlogic/mariozechner.at).
 
 ## Project Structure
 
@@ -34,6 +35,7 @@ Files and directories starting with `_` are NOT emitted as standalone pages by b
 ## Common Tasks
 
 ### Add a new blog post
+
 When asked to create a new post, scaffold it immediately — do not ask for confirmation.
 
 1. Get today's date: `date +%Y-%m-%d`
@@ -42,16 +44,17 @@ When asked to create a new post, scaffold it immediately — do not ask for conf
 4. Create `meta.json` (set `"published": false` until the user says to publish):
    ```json
    {
-       "title": "Post Title",
-       "date": "YYYY-MM-DD",
-       "description": "SEO / RSS description",
-       "image": "media/header.png",
-       "caption": "Header image caption",
-       "published": false
+     "title": "Post Title",
+     "date": "YYYY-MM-DD",
+     "description": "SEO / RSS description",
+     "image": "media/header.png",
+     "caption": "Header image caption",
+     "published": false
    }
    ```
    Omit `image` and `caption` if the post has no header image — `post-header.html` handles that.
 5. Create `index.md` with this boilerplate:
+
    ```ejs
    <%
    	meta("../../meta.json")
@@ -70,43 +73,47 @@ When asked to create a new post, scaffold it immediately — do not ask for conf
 
    <%= render("../../_partials/post-footer.html", { title, url }) %>
    ```
+
 6. Drop the header image (if any) into `media/`.
 
 ### Scrollable / long code blocks
-Wrap them so they scroll with a fade:
-```html
-<div class="code-preview">
 
-```typescript
-// code
-```
+Wrap them so they scroll with a fade:
+
+````html
+<div class="code-preview">```typescript // code</div>
+````
 
 </div>
 ```
 The blank lines around the fenced block are required — Markdown parsers need them.
 
 ### Figures and videos
+
 Image with caption:
+
 ```html
 <figure>
-<img src="media/foo.png" loading="lazy">
-<figcaption>Caption text</figcaption>
+  <img src="media/foo.png" loading="lazy" />
+  <figcaption>Caption text</figcaption>
 </figure>
 ```
 
 Video — closing tag MUST be on its own line:
+
 ```html
-<video src="media/foo.mp4" controls>
-</video>
+<video src="media/foo.mp4" controls></video>
 ```
 
 ### Development
+
 ```bash
 ./dev.sh
 # http://127.0.0.1:8080 with live reload
 ```
 
 ### Build
+
 ```bash
 ./build.sh
 # Output: ./html/
@@ -121,6 +128,7 @@ Video — closing tag MUST be on its own line:
 - `require(id)` — normal Node.js require.
 
 Available on `this` inside any transformed file:
+
 - `inputPath`, `outputPath`, `content`
 
 ## Styling
@@ -147,6 +155,7 @@ Available on `this` inside any transformed file:
 ## Dictation Workflow
 
 When the user dictates paragraphs:
+
 - Fix grammar and spelling only.
 - Do NOT change tone or content.
 - If the user asks for options or to "tighten it up", output suggestions in chat first and wait for confirmation before writing to a file.
