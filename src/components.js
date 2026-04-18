@@ -40,24 +40,31 @@ if (!localStorage.getItem("theme")) {
 document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") ?? "light");
 
 class ColorBand extends HTMLElement {
-    connectedCallback() {
-        this.style.display = "block";
-        this.innerHTML = /*html*/ `<canvas class="w-full h-full"></canvas>`;
-
+    _resizeCanvas() {
         const canvas = this.querySelector("canvas");
+        if (!canvas) return;
         const dpr = window.devicePixelRatio || 1;
         const w = canvas.clientWidth;
         const h = canvas.clientHeight;
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-        ctx.scale(dpr, dpr);
+        if (ctx) ctx.scale(dpr, dpr);
+    }
+
+    connectedCallback() {
+        this.style.display = "block";
+        this.innerHTML = /*html*/ `<canvas class="w-full h-full"></canvas>`;
+
+        this._resizeCanvas();
+
+        this._resizeObserver = new ResizeObserver(() => this._resizeCanvas());
+        this._resizeObserver.observe(this);
+
+        const canvas = this.querySelector("canvas");
 
         const NUM_POINTS = 120;
         const PLOT_COUNT = 3;
-        const plotWidth = w / PLOT_COUNT;
-        const pad = Math.min(plotWidth, h) * 0.12;
 
         // Forest green palette
         const palette = [
@@ -159,7 +166,7 @@ class ColorBand extends HTMLElement {
 
         const startTime = performance.now();
 
-        const drawAxes = (cx, cy, size) => {
+        const drawAxes = (ctx, cx, cy, size) => {
             const axisColor = getComputedStyle(document.documentElement)
                 .getPropertyValue("--border-color").trim() || "#454545";
             ctx.strokeStyle = axisColor;
@@ -178,6 +185,16 @@ class ColorBand extends HTMLElement {
 
         const animate = () => {
             if (!this.isConnected) return;
+
+            const dpr = window.devicePixelRatio || 1;
+            const w = canvas.width / dpr;
+            const h = canvas.height / dpr;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            const plotWidth = w / PLOT_COUNT;
+            const pad = Math.min(plotWidth, h) * 0.12;
+
             ctx.clearRect(0, 0, w, h);
 
             const elapsed = performance.now() - startTime;
@@ -187,7 +204,7 @@ class ColorBand extends HTMLElement {
                 const cy = h / 2;
                 const size = (Math.min(plotWidth, h) / 2) - pad;
 
-                drawAxes(cx, cy, size);
+                drawAxes(ctx, cx, cy, size);
 
                 let phaseFrom, phaseTo, blend;
 
@@ -232,6 +249,10 @@ class ColorBand extends HTMLElement {
         if (this._raf) {
             cancelAnimationFrame(this._raf);
             this._raf = null;
+        }
+        if (this._resizeObserver) {
+            this._resizeObserver.disconnect();
+            this._resizeObserver = null;
         }
     }
 }
