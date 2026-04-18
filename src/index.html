@@ -4,6 +4,12 @@
 
     <color-band class="w-full mt-4 mb-6" style="height: 80px;"></color-band>
 
+
+        <h4 class="mt-8 mb-6">Who I am</h4>
+    <p>
+        Hi, I'm Nikko. I'm a serial founder & CTO; usually solving human systems problems so my friends get to build great software.
+    </p>
+
     <h4 class="mb-6">Writings <a href="/rss.xml" class="text-sm"><svg style="width: 18px; color: var(--link-color);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss-icon lucide-rss"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a></h4>
     <%
         const posts = metas("./posts").filter((p) => p.meta.published);
@@ -47,7 +53,7 @@
             <a href="https://bsky.app/profile/npatten.bsky.social"><i class="icon w-8 h-8" style="color: var(--link-color);"><%=render("./_icons/bluesky-line.svg")%></i></a>
             <!-- <a href="https://mastodon.social/@nikkopatten"><i class="icon w-8 h-8" style="color: var(--link-color);"><%=render("./_icons/mastodon-line.svg")%></i></a> -->
         </div>
-        <a href="mailto:hello@nikkopatten.com">hello@nikkopatten.com</a>
+        <a href="mailto:nikkopatten@gmail.com">nikkopatten@gmail.com</a>
     </div>
 
     <%= render("./_partials/footer.html") %>

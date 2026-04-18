@@ -4,6 +4,26 @@
     padding: 0;
 }
 
+.paren-lambda {
+    position: relative;
+    display: inline-block;
+}
+
+.paren-lambda::after {
+    content: 'λ';
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: baseline;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+a:hover .paren-lambda::after {
+    max-width: 1.2em;
+    opacity: 1;
+}
+
 html {
     font-size: 18px;
     -webkit-font-smoothing: antialiased;
