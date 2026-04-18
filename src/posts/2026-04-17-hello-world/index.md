@@ -11,11 +11,11 @@ Welcome, Kia ora, Willkommen, Fique à vontade
 ## Why this exists
 
 After some twenty plus years of getting distracted, I finally got a site up.
-Thank you to [Armin](https://lucumr.pocoo.org/about/) and especially [Mario](https://mariozechner.at/) for the inspiration to actually sit and write like this.
+Thank you to [Armin](https://lucumr.pocoo.org/about/) and especially [Mario](https://mariozechner.at/) for the inspiration to actually sit and write like this. As the whole software industry attempts to reinvent itself in a dozen different ways while riding the clankers off the nearest security cliff, I'm finding myself with a lot of reflection and sythesis todo. My friends and colleagues who have been kind enough to listen to me verbally process have given me enough indication that others might want to read what I have to say that it finally got me over the inertia barrier to get this setup.
 
 ## What it's built with
 
-Double thanks to Mario for the template to build this site using his [blargh](https://github.com/badlogic/blargh) library. Exactly the setup I was looking for. 🍻
+Double thanks to Mario for the template to build this site using his [blargh](https://github.com/badlogic/blargh) library; exactly the kind of setup I was looking for. 🍻
 
 ## My history with AI
 
@@ -27,7 +27,7 @@ I vividly remember reading [On Intelligence](https://www.numenta.com/resources/b
 
 Through the intervening years I eagerly devoured news of Xbox Kinect projects, IBM Watson, [AlexNet](https://en.wikipedia.org/wiki/AlexNet), AlphaGo _(goodness I'm a sucker for that documentary)_, and of course all the buzz around Google's [Attention is all you Need](https://arxiv.org/abs/1706.03762) paper and the emergence of the modern era of GPT dominance. We sadly never got to applying ML or AI at Sparkfund; it was forever a 'next quarter' initiative we never found the time for, despite being lucky enough to have some brilliant AI minds like [Nathan Sorenson](https://github.com/takeoutweight) on the team.
 
-#### Everything's an iceberg
+##### Everything's an iceberg
 
 I confess, I started Junglytics in an attempt to do an end run on capitalism. The goal was to crank out a solid product in an under served software niche, cashout, and do as much good as possible with the earnings. I founded it with an old buddy from the Intuit RDP program who had found an impressive amount of success on Amazon. So we built a tiny team and spent close to two years slogging through some of the gnarliest data work I've ever encountered. You'd think Amazon would have decent data, but good grief, they make government data look pristine. In a stroke of luck, right when we had our data pipelines and query engine in a solid place OpenAI launched GPT-4 with 'Function Calling' <q-l href="https://openai.com/index/function-calling-and-other-api-updates/"></q-l> in June of 2023.
 
