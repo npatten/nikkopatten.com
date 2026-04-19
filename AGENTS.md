@@ -110,6 +110,15 @@ Figures, videos, scrollable code blocks, em-dash rule, `loading="lazy"`, `%%toc%
 # Output: ./html/
 ```
 
+### Deploy
+
+Pushing to git does NOT auto-deploy. Always run the deploy script manually after pushing:
+
+```bash
+./deploy.sh
+# Builds, then deploys html/ to Cloudflare Pages via wrangler
+```
+
 ## Template Functions (blargh built-ins)
 
 - `meta(path?)` — loads JSON metadata onto `this`. Default path is `./meta.json`.
