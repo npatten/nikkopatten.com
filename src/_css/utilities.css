@@ -584,6 +584,14 @@
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
 .text-muted {
   color: var(--dimmed-text-color)
 }
